@@ -3,6 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link
+  rel="icon"
+  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>"
+/>
+    
   <title>Waqas & Saffiya</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
@@ -63,25 +68,23 @@
 <body>
   <div class="dream-bg" id="dreamBg"></div>
 
-  <!-- REMOVED ambient audio per request -->
+  <!-- Local music file -->
+  <audio id="bgMusic" preload="auto">
+    <source src="/assets/song.mp3" type="audio/mpeg">
+  </audio>
 
-<!-- Local music file -->
-<audio id="bgMusic" preload="auto">
-  <source src="/assets/song.mp3" type="audio/mpeg">
-</audio>
-  
   <!-- Floating Nav Bar (crystal blur) -->
   <header class="topbar" role="banner">
     <div class="brand">
       <div class="logo">💗</div>
       <div>
-        <h1>For You</h1>
-        <p>A small gift — only for you , Only you.</p>
+        <h1>For You Safiyya</h1>
+        <p>A small gift —  only for you , Only you.</p>
       </div>
     </div>
     <div class="right-slot">
-        <button id="playBtn" style="padding:8px 16px;border-radius:999px;border:0;background:white;box-shadow:0 4px 12px rgba(0,0,0,0.08);font-weight:600;font-size:13px;color:var(--deep);cursor:pointer;">Play song</button>
-      </div>
+      <button id="playBtn" style="padding:8px 16px;border-radius:999px;border:0;background:white;box-shadow:0 4px 12px rgba(0,0,0,0.08);font-weight:600;font-size:13px;color:var(--deep);cursor:pointer;">Play song</button>
+    </div>
   </header>
 
   <main>
@@ -91,7 +94,7 @@
         <h1 style="margin:0 0 8px; font-family:Playfair Display; font-size:clamp(28px,8vw,48px);">
           <span class="typewrap"><span class="tw-static">Welcome </span><span class="tw-name" id="nameSpan"></span><span id="ellipsis"></span><span class="tw-cursor" id="cursor">|</span></span>
         </h1>
-        <p id="welcomeSub" style="opacity:0;margin-top:12px;color:var(--muted)">I'm so happy you're here my wife — scroll down to begin the journey..</p>
+        <p id="welcomeSub" style="opacity:0;margin-top:12px;color:var(--muted)">I'm so happy you're here my wife — scroll down to explore.</p>
       </div>
       <div class="scroll-hint" id="scrollHint" style="opacity:0;">
         <div class="chev" id="chevBtn" role="button" aria-label="Scroll down"><svg viewBox="0 0 24 24" fill="none" stroke="#c76f7f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
@@ -144,15 +147,15 @@
 
     // Typing effect (slower + ellipsis) — thinner style
     (function(){
-      const name = 'Saffiya';
+      const name = 'Safiyya Fathima';
       const nameEl = document.getElementById('nameSpan');
       const ell = document.getElementById('ellipsis');
       const cursor = document.getElementById('cursor');
       const welcomeSub = document.getElementById('welcomeSub');
-      nameEl.textContent = '';
+      if (nameEl) nameEl.textContent = '';
       let i=0; const speed=200; // slightly slower
-      function typeName(){ if(i<name.length){ nameEl.textContent += name.charAt(i); i++; setTimeout(typeName, speed);} else typeDots(0); }
-      function typeDots(n){ if(n<3){ ell.textContent += '.'; setTimeout(()=>typeDots(n+1), 320);} else { gsap.to(cursor,{autoAlpha:0,duration:0.6,repeat:1,yoyo:true}); gsap.to(welcomeSub,{autoAlpha:1,y:0,duration:0.6,delay:0.12}); gsap.to('#scrollHint',{autoAlpha:1,duration:0.6,delay:0.15}); }}
+      function typeName(){ if(i<name.length){ if(nameEl) nameEl.textContent += name.charAt(i); i++; setTimeout(typeName, speed);} else typeDots(0); }
+      function typeDots(n){ if(n<3){ if(ell) ell.textContent += '.'; setTimeout(()=>typeDots(n+1), 320);} else { if(cursor) gsap.to(cursor,{autoAlpha:0,duration:0.6,repeat:1,yoyo:true}); if(welcomeSub) gsap.to(welcomeSub,{autoAlpha:1,y:0,duration:0.6,delay:0.12}); gsap.to('#scrollHint',{autoAlpha:1,duration:0.6,delay:0.15}); }}
       setTimeout(typeName,500);
       gsap.timeline({repeat:-1}).to('#cursor',{autoAlpha:0,duration:0.6}).to('#cursor',{autoAlpha:1,duration:0.6});
     })();
@@ -176,7 +179,11 @@
       }
     }
     // apply petals: increase density 2x and speed 3x as requested
-    document.querySelectorAll('.panel').forEach((s,idx)=>{ if(s.id==='welcome') makePetals(s,6,3); else makePetals(s,10,3); });
+    document.querySelectorAll('.panel').forEach((s,idx) => {
+      if (s && s.nodeType === 1) {
+        if(s.id==='welcome') makePetals(s,6,3); else makePetals(s,10,3);
+      }
+    });
 
     // fade/slide animations for sections
     document.querySelectorAll('.panel').forEach((panel, idx)=>{
@@ -196,41 +203,65 @@
 
     // when last section fully visible, change scroll hint to closing statement
     ScrollTrigger.create({trigger:document.getElementById('sec3'),start:'top 40%',end:'top 10%',onEnter:()=>{
-      const hint = document.querySelector('.hint-text'); hint.innerText = "You've reached the end — with all my love."; gsap.to('#chevBtn',{scale:0.92,duration:0.12,repeat:1,yoyo:true});
-    },onLeaveBack:()=>{ const hint = document.querySelector('.hint-text'); hint.innerText = 'Scroll'; gsap.to('#chevBtn',{scale:1,duration:0.12});}});
+      const hint = document.querySelector('.hint-text'); if(hint) hint.innerText = "You've reached the end — with all my love."; gsap.to('#chevBtn',{scale:0.92,duration:0.12,repeat:1,yoyo:true});
+    },onLeaveBack:()=>{ const hint = document.querySelector('.hint-text'); if(hint) hint.innerText = 'Scroll'; gsap.to('#chevBtn',{scale:1,duration:0.12});}});
 
-    // redirects (updated links)
-    document.querySelectorAll('[data-redirect]').forEach(btn=>btn.addEventListener('click', e=>{ e.stopPropagation(); const url = btn.dataset.redirect; gsap.to(btn,{scale:0.96,duration:0.12,yoyo:true,repeat:1,onComplete:()=> window.open(url, "_blank");}); }));
+    // redirects (updated links) -> open in new tab safely
+    document.querySelectorAll('[data-redirect]').forEach(btn=>{
+      btn.addEventListener('click', e=>{
+        e.stopPropagation();
+        const url = btn.dataset.redirect;
+        // small click animation, then open in new tab
+        gsap.to(btn,{scale:0.96,duration:0.12,yoyo:true,repeat:1,onComplete:()=>{
+          try {
+            const win = window.open(url, '_blank');
+            if (win) { try { win.opener = null; } catch(e){} }
+          } catch(err) {
+            // fallback
+            window.location.href = url;
+          }
+        }});
+      });
+    });
 
     // scroll hint click
-    document.getElementById('chevBtn').addEventListener('click', ()=>{ const next = document.getElementById('sec1'); if(next) window.scrollTo({top: next.offsetTop, behavior:'smooth'}); });
+    const chev = document.getElementById('chevBtn');
+    if (chev) chev.addEventListener('click', ()=>{ const next = document.getElementById('sec1'); if(next) window.scrollTo({top: next.offsetTop, behavior:'smooth'}); });
 
     // keyboard nav
     document.addEventListener('keydown',(e)=>{ if(e.key==='ArrowDown'||e.key==='PageDown') window.scrollBy({top: window.innerHeight,behavior:'smooth'}); if(e.key==='ArrowUp'||e.key==='PageUp') window.scrollBy({top: -window.innerHeight,behavior:'smooth'}); });
 
-// Play / Pause music toggle
-const playBtn = document.getElementById("playBtn");
-const bgMusic = document.getElementById("bgMusic");
+    // Play / Pause music toggle (safe guards)
+    (function(){
+      const playBtn = document.getElementById("playBtn");
+      const bgMusic = document.getElementById("bgMusic");
+      if (!playBtn) return;
+      let isPlaying = false;
+      playBtn.addEventListener("click", () => {
+        if (!bgMusic) {
+          // audio element missing
+          playBtn.textContent = "No song set";
+          setTimeout(()=> playBtn.textContent = "Play song", 1200);
+          return;
+        }
+        if (!isPlaying) {
+          bgMusic.play()
+            .then(() => {
+              isPlaying = true;
+              playBtn.textContent = "Pause";
+            })
+            .catch(err => {
+              console.log("Audio play prevented:", err);
+              playBtn.textContent = "Play song";
+            });
+        } else {
+          bgMusic.pause();
+          isPlaying = false;
+          playBtn.textContent = "Play song";
+        }
+      });
+    })();
 
-let isPlaying = false;
-
-playBtn.addEventListener("click", () => {
-  if (!isPlaying) {
-    bgMusic.play()
-      .then(() => {
-        isPlaying = true;
-        playBtn.textContent = "Pause";
-      })
-      .catch(err => console.log("Audio blocked until user interacts:", err));
-  } else {
-    bgMusic.pause();
-    isPlaying = false;
-    playBtn.textContent = "Play song";
-  }
-});
-
-
-    
   </script>
 </body>
 </html>
