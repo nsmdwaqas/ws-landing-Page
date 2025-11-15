@@ -65,6 +65,11 @@
 
   <!-- REMOVED ambient audio per request -->
 
+<!-- Local music file -->
+<audio id="bgMusic" preload="auto">
+  <source src="/assets/song.mp3" type="audio/mpeg">
+</audio>
+  
   <!-- Floating Nav Bar (crystal blur) -->
   <header class="topbar" role="banner">
     <div class="brand">
@@ -203,6 +208,29 @@
     // keyboard nav
     document.addEventListener('keydown',(e)=>{ if(e.key==='ArrowDown'||e.key==='PageDown') window.scrollBy({top: window.innerHeight,behavior:'smooth'}); if(e.key==='ArrowUp'||e.key==='PageUp') window.scrollBy({top: -window.innerHeight,behavior:'smooth'}); });
 
+// Play / Pause music toggle
+const playBtn = document.getElementById("playBtn");
+const bgMusic = document.getElementById("bgMusic");
+
+let isPlaying = false;
+
+playBtn.addEventListener("click", () => {
+  if (!isPlaying) {
+    bgMusic.play()
+      .then(() => {
+        isPlaying = true;
+        playBtn.textContent = "Pause";
+      })
+      .catch(err => console.log("Audio blocked until user interacts:", err));
+  } else {
+    bgMusic.pause();
+    isPlaying = false;
+    playBtn.textContent = "Play song";
+  }
+});
+
+
+    
   </script>
 </body>
 </html>
