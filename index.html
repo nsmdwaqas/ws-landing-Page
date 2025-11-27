@@ -90,7 +90,6 @@
     }
     .pill-arrow svg{width:18px;height:18px; display:block; stroke:var(--deep); }
 
-    /* subtle glow ring (using pseudo-element) */
     .pill-arrow::after{
       content:'';
       position:absolute;
@@ -102,7 +101,6 @@
       transition: opacity 220ms ease, transform 220ms ease;
       transform: scale(0.94);
     }
-    /* hover / focus: increase glow */
     .pill-arrow:hover, .pill-arrow:focus {
       transform: translateY(-54%) translateY(-6px) scale(1.02);
       box-shadow: 0 18px 48px rgba(61,46,46,0.08), 0 6px 28px rgba(199,111,127,0.14);
@@ -114,16 +112,13 @@
       box-shadow: 0 20px 60px rgba(199,111,127,0.16);
     }
 
-    /* position tweaks */
     .arrow-left{left: -8px}
     .arrow-right{right: -8px}
 
-    /* responsive: hide pills on small screens (touch users get swipe) */
     @media(max-width:700px){
       .pill-arrow{display:none}
     }
 
-    /* arrows accessible focus ring for keyboard users */
     .pill-arrow:focus{ box-shadow: 0 6px 18px rgba(61,46,46,0.06), 0 0 0 4px rgba(199,111,127,0.12); }
 
     /* dots */
@@ -131,7 +126,6 @@
     .dot{width:10px;height:10px;border-radius:50%;background:rgba(61,46,46,0.14);cursor:pointer}
     .dot.active{background:var(--name-color); box-shadow:0 6px 14px rgba(199,111,127,0.12)}
 
-    /* small responsive tweaks */
     @media(max-width:700px){
       .h-card{flex:0 0 86%; height:54vh}
     }
@@ -146,14 +140,10 @@
       position: relative;
       z-index: 50;
       margin-top: 40px;
-
-      /* glassy soft background */
       background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.45));
       backdrop-filter: blur(10px) saturate(140%);
       -webkit-backdrop-filter: blur(10px) saturate(140%);
       border-top: 1px solid rgba(255,255,255,0.55);
-
-      /* soft glow shadow */
       box-shadow: 0 -8px 30px rgba(199,111,127,0.04);
     }
 
@@ -164,13 +154,10 @@
       letter-spacing: 0.3px;
       color: var(--name-color);
     }
-    /* small fade-up when footer appears */
     .love-footer { opacity: 0; transform: translateY(6px); transition: opacity 620ms ease, transform 620ms ease; }
     .love-footer.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
-
-
 
 <body>
   <div class="dream-bg" id="dreamBg"></div>
@@ -219,10 +206,13 @@
         </button>
 
         <div class="h-slider" id="hSlider" tabindex="0" role="list">
+          <!-- Card 1: Story -->
           <article class="h-card" id="card1" role="listitem" aria-label="Our Story">
             <div class="content" style="background:transparent;box-shadow:none;padding:0;max-width:640px;">
               <div class="icon-bubble" aria-hidden="true">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21s-7.5-4.8-9.2-8.1C.9 9.8 4.1 6 7.5 6c1.9 0 3.2.9 4.5 2.4C13.3 6.9 14.6 6 16.5 6 19.9 6 23.1 9.8 21.2 12.9 19.5 16.2 12 21 12 21z" fill="#c76f7f"/></svg>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 21s-7.5-4.8-9.2-8.1C.9 9.8 4.1 6 7.5 6c1.9 0 3.2.9 4.5 2.4C13.3 6.9 14.6 6 16.5 6 19.9 6 23.1 9.8 21.2 12.9 19.5 16.2 12 21 12 21z" fill="#c76f7f"/>
+                </svg>
               </div>
               <h2 class="title">Our Story</h2>
               <p class="lead">How it all began — small moments, big love.</p>
@@ -230,10 +220,14 @@
             </div>
           </article>
 
+          <!-- Card 2: Invitation -->
           <article class="h-card" id="card2" role="listitem" aria-label="Invitation">
             <div class="content" style="background:transparent;box-shadow:none;padding:0;max-width:640px;">
               <div class="icon-bubble" aria-hidden="true">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 8.5V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5" stroke="#c76f7f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 6H3v2.5l9 6 9-6V6z" stroke="#c76f7f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M3 8.5V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5" stroke="#c76f7f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M21 6H3v2.5l9 6 9-6V6z" stroke="#c76f7f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
               <h2 class="title">Invitation</h2>
               <p class="lead">A little invite — for the here and now.</p>
@@ -241,10 +235,29 @@
             </div>
           </article>
 
-          <article class="h-card" id="card3" role="listitem" aria-label="The Future">
+          <!-- Card 3: Moments -->
+          <article class="h-card" id="card3" role="listitem" aria-label="Moments">
             <div class="content" style="background:transparent;box-shadow:none;padding:0;max-width:640px;">
               <div class="icon-bubble" aria-hidden="true">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 7.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zM7 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM20 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM12 20.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zM17 13.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM9.5 14.8c1.2.8 2.8.8 4 0 1.6-1.1 2.2-3.6 1.5-5.6-1.1-3-4.7-4-6-4-1.3 0-4.9 1-6 4-.7 2 .1 4.5 1.5 5.6z" fill="#c76f7f"/></svg>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" ry="2" stroke="#c76f7f" stroke-width="1.4"/>
+                  <circle cx="9" cy="11" r="2" fill="#c76f7f"/>
+                  <path d="M12 15l2-2 3 3" stroke="#c76f7f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h2 class="title">Moments</h2>
+              <p class="lead">Tiny snapshots of us — kept safe in one place.</p>
+              <button class="btn" data-redirect="http://ws-moments.netlify.app/">Open</button>
+            </div>
+          </article>
+
+          <!-- Card 4: Future -->
+          <article class="h-card" id="card4" role="listitem" aria-label="The Future">
+            <div class="content" style="background:transparent;box-shadow:none;padding:0;max-width:640px;">
+              <div class="icon-bubble" aria-hidden="true">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 7.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zM7 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM20 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM12 20.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zM17 13.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM9.5 14.8c1.2.8 2.8.8 4 0 1.6-1.1 2.2-3.6 1.5-5.6-1.1-3-4.7-4-6-4-1.3 0-4.9 1-6 4-.7 2 .1 4.5 1.5 5.6z" fill="#c76f7f"/>
+                </svg>
               </div>
               <h2 class="title">The Future</h2>
               <p class="lead">A small map to our tomorrow — dreams and gentle promises.</p>
@@ -262,11 +275,12 @@
           <div class="dot" data-index="0" aria-label="Go to card 1"></div>
           <div class="dot" data-index="1" aria-label="Go to card 2"></div>
           <div class="dot" data-index="2" aria-label="Go to card 3"></div>
+          <div class="dot" data-index="3" aria-label="Go to card 4"></div>
         </div>
       </div>
     </section>
 
-    <!-- Cute Romantic Footer (patched in) -->
+    <!-- Cute Romantic Footer -->
     <footer class="love-footer" id="loveFooter" aria-label="Footer">
       <p>© Waqas &amp; Safiyya — forever since 2025</p>
     </footer>
@@ -285,28 +299,63 @@
       const welcomeSub = document.getElementById('welcomeSub');
       if (nameEl) nameEl.textContent = '';
       let i=0; const speed=200;
-      function typeName(){ if(i<name.length){ if(nameEl) nameEl.textContent += name.charAt(i); i++; setTimeout(typeName, speed);} else typeDots(0); }
-      function typeDots(n){ if(n<3){ if(ell) ell.textContent += '.'; setTimeout(()=>typeDots(n+1), 320);} else { if(cursor) gsap.to(cursor,{autoAlpha:0,duration:0.6,repeat:1,yoyo:true}); if(welcomeSub) gsap.to(welcomeSub,{autoAlpha:1,y:0,duration:0.6,delay:0.12}); gsap.to('#scrollHint',{autoAlpha:1,duration:0.6,delay:0.15}); }}
+      function typeName(){
+        if(i<name.length){
+          if(nameEl) nameEl.textContent += name.charAt(i);
+          i++;
+          setTimeout(typeName, speed);
+        } else typeDots(0);
+      }
+      function typeDots(n){
+        if(n<3){
+          if(ell) ell.textContent += '.';
+          setTimeout(()=>typeDots(n+1), 320);
+        } else {
+          if(cursor) gsap.to(cursor,{autoAlpha:0,duration:0.6,repeat:1,yoyo:true});
+          if(welcomeSub) gsap.to(welcomeSub,{autoAlpha:1,y:0,duration:0.6,delay:0.12});
+          gsap.to('#scrollHint',{autoAlpha:1,duration:0.6,delay:0.15});
+        }
+      }
       setTimeout(typeName,500);
-      gsap.timeline({repeat:-1}).to('#cursor',{autoAlpha:0,duration:0.6}).to('#cursor',{autoAlpha:1,duration:0.6});
+      gsap.timeline({repeat:-1})
+        .to('#cursor',{autoAlpha:0,duration:0.6})
+        .to('#cursor',{autoAlpha:1,duration:0.6});
     })();
 
-    // Petal animation generator (used for each visible area)
+    // Petal animation generator
     function makePetals(container, baseCount=8, speedMultiplier=1){
       const count = Math.round(baseCount * 2);
       for(let i=0;i<count;i++){
         const p = document.createElement('div'); p.className='petal';
         const left = Math.random()*100; const top = Math.random()*100;
-        p.style.left = left + '%'; p.style.top = top + '%'; p.style.opacity = 0.25 + Math.random()*0.6; p.style.transform = `rotate(${Math.random()*60-30}deg) scale(${0.8 + Math.random()*0.6})`;
+        p.style.left = left + '%'; p.style.top = top + '%';
+        p.style.opacity = 0.25 + Math.random()*0.6;
+        p.style.transform = `rotate(${Math.random()*60-30}deg) scale(${0.8 + Math.random()*0.6})`;
         container.appendChild(p);
         const baseDur = 8 + Math.random()*8;
         const dur = Math.max(2, baseDur / speedMultiplier);
-        gsap.to(p, {y: `+=${40 + Math.random()*140}`, x: `+=${(Math.random()*80-40)}`, rotation: `+=${(Math.random()*180-90)}`, duration: dur, repeat:-1, yoyo:true, ease:'sine.inOut', delay: Math.random()*2});
-        gsap.to(p, {x: `+=${(Math.random()*30-15)}`, duration: dur*0.6, repeat:-1, yoyo:true, ease:'sine.inOut', delay: Math.random()*2});
+        gsap.to(p, {
+          y: `+=${40 + Math.random()*140}`,
+          x: `+=${(Math.random()*80-40)}`,
+          rotation: `+=${(Math.random()*180-90)}`,
+          duration: dur,
+          repeat:-1,
+          yoyo:true,
+          ease:'sine.inOut',
+          delay: Math.random()*2
+        });
+        gsap.to(p, {
+          x: `+=${(Math.random()*30-15)}`,
+          duration: dur*0.6,
+          repeat:-1,
+          yoyo:true,
+          ease:'sine.inOut',
+          delay: Math.random()*2
+        });
       }
     }
 
-    // Initialize petals for welcome and for the slider wrapper (gentle, slightly faster)
+    // Initialize petals
     (function initPetals(){
       const welcome = document.getElementById('welcome');
       if (welcome) makePetals(welcome, 6, 3);
@@ -314,7 +363,7 @@
       if (wrap) makePetals(wrap, 8, 3);
     })();
 
-    // GSAP reveal for welcome content and each card's content
+    // GSAP reveal for welcome content and cards
     document.querySelectorAll('.panel, .h-card').forEach((el)=>{
       const content = el.querySelector('.content');
       if (!content) return;
@@ -330,27 +379,36 @@
     // dreamy background slow movement
     gsap.to('#dreamBg',{x:'-=120',y:'-=60',duration:18,repeat:-1,yoyo:true,ease:'sine.inOut'});
 
-    // Redirect buttons open safely in new tab
+    // Redirect buttons open in new tab
     document.querySelectorAll('[data-redirect]').forEach(btn=>{
       btn.addEventListener('click', e=>{
         e.stopPropagation();
         const url = btn.dataset.redirect;
-        gsap.to(btn,{scale:0.96,duration:0.12,yoyo:true,repeat:1,onComplete:()=>{
-          try {
-            const win = window.open(url, '_blank');
-            if (win) { try { win.opener = null; } catch(e){} }
-          } catch(err) {
-            window.location.href = url;
+        gsap.to(btn,{
+          scale:0.96,
+          duration:0.12,
+          yoyo:true,
+          repeat:1,
+          onComplete:()=>{
+            try {
+              const win = window.open(url, '_blank');
+              if (win) { try { win.opener = null; } catch(e){} }
+            } catch(err) {
+              window.location.href = url;
+            }
           }
-        }});
+        });
       });
     });
 
     // Scroll hint click -> scroll to cards row
     const chev = document.getElementById('chevBtn');
-    if (chev) chev.addEventListener('click', ()=>{ const wrap = document.getElementById('hWrap'); if(wrap) wrap.scrollIntoView({behavior:'smooth', block:'center'}); });
+    if (chev) chev.addEventListener('click', ()=>{
+      const wrap = document.getElementById('hWrap');
+      if(wrap) wrap.scrollIntoView({behavior:'smooth', block:'center'});
+    });
 
-    // Keyboard nav: arrow keys navigate vertically on welcome and left/right inside slider focus
+    // Keyboard vertical nav
     document.addEventListener('keydown', (e)=>{
       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
         const welcome = document.getElementById('welcome');
@@ -366,7 +424,7 @@
       }
     });
 
-    // --- HORIZONTAL SLIDER LOGIC (wheel -> horizontal, pills, dots) ---
+    // --- HORIZONTAL SLIDER LOGIC ---
     (function(){
       const slider = document.getElementById('hSlider');
       const left = document.getElementById('arrowLeft');
@@ -375,7 +433,6 @@
       const cards = Array.from(document.querySelectorAll('.h-card'));
       if (!slider) return;
 
-      // helper: get centered card index based on slider.scrollLeft
       function getCenteredCardIndex(){
         const sliderCenter = slider.scrollLeft + slider.offsetWidth/2;
         let bestIdx = 0;
@@ -388,13 +445,11 @@
         return bestIdx;
       }
 
-      // update dots active
       function updateDots(){
         const idx = getCenteredCardIndex();
         dots.forEach((d,i)=> d.classList.toggle('active', i===idx));
       }
 
-      // wheel -> horizontal scroll (nice and accessible)
       slider.addEventListener('wheel', (ev)=>{
         if (Math.abs(ev.deltaX) < Math.abs(ev.deltaY)) {
           ev.preventDefault();
@@ -402,14 +457,16 @@
         }
       }, {passive:false});
 
-      // snap to nearest card after user stops interacting
       let snapTimer = null;
       function scheduleSnap(){
         if (snapTimer) clearTimeout(snapTimer);
         snapTimer = setTimeout(()=> {
           const idx = getCenteredCardIndex();
           const target = cards[idx];
-          if (target) slider.scrollTo({left: target.offsetLeft - Math.max(0, (slider.offsetWidth - target.offsetWidth)/2), behavior:'smooth'});
+          if (target) slider.scrollTo({
+            left: target.offsetLeft - Math.max(0, (slider.offsetWidth - target.offsetWidth)/2),
+            behavior:'smooth'
+          });
           updateDots();
         }, 140);
       }
@@ -417,43 +474,49 @@
       slider.addEventListener('touchend', scheduleSnap);
       slider.addEventListener('mouseup', scheduleSnap);
 
-      // pills (left/right)
       left.addEventListener('click', ()=>{
         const idx = Math.max(0, getCenteredCardIndex() - 1);
         const target = cards[idx];
-        if (target) slider.scrollTo({left: target.offsetLeft - Math.max(0, (slider.offsetWidth - target.offsetWidth)/2), behavior:'smooth'});
+        if (target) slider.scrollTo({
+          left: target.offsetLeft - Math.max(0, (slider.offsetWidth - target.offsetWidth)/2),
+          behavior:'smooth'
+        });
       });
       right.addEventListener('click', ()=>{
         const idx = Math.min(cards.length-1, getCenteredCardIndex() + 1);
         const target = cards[idx];
-        if (target) slider.scrollTo({left: target.offsetLeft - Math.max(0, (slider.offsetWidth - target.offsetWidth)/2), behavior:'smooth'});
+        if (target) slider.scrollTo({
+          left: target.offsetLeft - Math.max(0, (slider.offsetWidth - target.offsetWidth)/2),
+          behavior:'smooth'
+        });
       });
 
-      // dots click
       dots.forEach((d,i)=> d.addEventListener('click', ()=>{
         const target = cards[i];
-        if (target) slider.scrollTo({left: target.offsetLeft - Math.max(0, (slider.offsetWidth - target.offsetWidth)/2), behavior:'smooth'});
+        if (target) slider.scrollTo({
+          left: target.offsetLeft - Math.max(0, (slider.offsetWidth - target.offsetWidth)/2),
+          behavior:'smooth'
+        });
       }));
 
-      // initial dot
       updateDots();
 
-      // update dots while user scrolls
-      slider.addEventListener('scroll', ()=> {
+      slider.addEventListener('scroll', ()=>{
         if (window._sliderDotRAF) cancelAnimationFrame(window._sliderDotRAF);
         window._sliderDotRAF = requestAnimationFrame(()=> updateDots());
       });
 
-      // keyboard left/right when slider focused
       slider.addEventListener('keydown', (e)=>{
         if (e.key === 'ArrowLeft') { left.click(); e.preventDefault(); }
         if (e.key === 'ArrowRight') { right.click(); e.preventDefault(); }
       });
 
-      // make first card centered on first arrival
-      window.addEventListener('load', ()=> {
+      window.addEventListener('load', ()=>{
         const t = cards[0];
-        if (t) slider.scrollTo({left: t.offsetLeft - Math.max(0, (slider.offsetWidth - t.offsetWidth)/2), behavior:'smooth'});
+        if (t) slider.scrollTo({
+          left: t.offsetLeft - Math.max(0, (slider.offsetWidth - t.offsetWidth)/2),
+          behavior:'smooth'
+        });
       });
     })();
 
